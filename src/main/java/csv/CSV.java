@@ -16,7 +16,7 @@ public class CSV {
     List<String> headers = new ArrayList<>();
     List<Double> data = new ArrayList<>();
 
-    Map<String,Integer> labelsToIndex;
+    Map<String, Integer> labelsToIndex;
 
 
     Table readTable(String file) throws IOException {
@@ -45,10 +45,11 @@ public class CSV {
 
             while (br.readLine() != null) {
                 String[] rowLinea = br.readLine().split(",");
-                for (int i=0; i<rowLinea.length-1; i++)
+                for (int i = 0; i < rowLinea.length - 1; i++)
                     data.add(Double.parseDouble(rowLinea[i]));
-               labelsToIndex.put(rowLinea[rowLinea.length-1], contador);
-
+                String key = rowLinea[rowLinea.length - 1];
+                // si no contiene la clave en el diccionario, la añade
+                if (!labelsToIndex.containsKey(key)) labelsToIndex.put(key, labelsToIndex.size());
             }
         } catch (IOException e) {
             e.printStackTrace();
