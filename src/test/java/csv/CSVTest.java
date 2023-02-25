@@ -43,6 +43,7 @@ class CSVTest {
 
 
 
+
     }
 
 
@@ -75,13 +76,24 @@ class CSVTest {
         assertEquals(0, csvW.tableWithLabels.getRowAt(1).getNumberClass());
 
     }
+
+    @Test
+    @DisplayName("Test de posicion ")
+    void testNumAsigned(){
+
+
+
+    }
     @Test
     @DisplayName("Test de Datos ")
-    void testNumAsigned(){
+    void testDataTable(){
         System.out.println("Comprobando el metodo getRowAt().getData()");
         assertEquals(characteristics,csvW.tableWithLabels.getRowAt(0).getData());
 
     }
+
+
+
 
 
 

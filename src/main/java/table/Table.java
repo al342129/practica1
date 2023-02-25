@@ -22,7 +22,5 @@ public class Table {
         return headers.size();
     }
 
-    public List<Row> getRows() {
-        return rows;
-    }
+
 }
