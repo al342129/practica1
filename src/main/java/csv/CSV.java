@@ -1,6 +1,7 @@
 package csv;
 
 import table.Row;
+import table.RowWithLabel;
 import table.Table;
 import table.TableWithLabels;
 
@@ -16,6 +17,7 @@ public class CSV {
     TableWithLabels tableWithLabels;
     List<String> headers = new ArrayList<>();
     public List<Row> rows = new ArrayList<Row>();
+    List<RowWithLabel> rowsWithLabels = new ArrayList<RowWithLabel>();
 
     Map<String, Integer> labelsToIndex;
 
@@ -46,29 +48,32 @@ public class CSV {
 
 
     public TableWithLabels readTableWithLabels(String file) throws IOException {
-        try (BufferedReader br = new BufferedReader(new FileReader(file))) {
-            String[] headersLinea = br.readLine().split(",");
-            for (String header : headersLinea){
-                headers.add(header);
-                
-                }
+        BufferedReader reader = new BufferedReader(new FileReader(file));
 
-            while (br.readLine() != null) {
-                String[] rowLinea = br.readLine().split(",");
+        String line;
+
+        while ((line = reader.readLine()) != null) {
+            String[] values = line.split(",");
+            if (headers.size() < values.length) {
+                for (String header : values) {
+                    headers.add(header);
+                }
+            }else {
                 List<Double> data = new ArrayList<>();
-                for (int i = 0; i < rowLinea.length - 1; i++) // paramos en la penultima columna.
-                    data.add(Double.parseDouble(rowLinea[i]));
-              //rows esta mal
-                rows.add(new Row(data));
-                String key = rowLinea[rowLinea.length - 1];
+                for (int i = 0; i < values.length - 1; i++) // paramos en la penultima columna.
+                data.add(Double.parseDouble(values[i]));
+
+
+                String key = values[values.length - 1];
                 // si no contiene la clave en el mapa, la añade
-                if (!labelsToIndex.containsKey(key)) labelsToIndex.put(key, labelsToIndex.size()); //mapa.size() lo ultizamos como contador.desde el cero hasta n
+                if (!labelsToIndex.containsKey(key)) labelsToIndex.put(key, labelsToIndex.size());
+                rowsWithLabels.add(new RowWithLabel(data,labelsToIndex.get(key)));
             }
-        } catch (IOException e) {
-            e.printStackTrace();
         }
-        //falta añadir las cabeceras
+        reader.close();
+        tableWithLabels = new TableWithLabels(headers ,rowsWithLabels);
         return tableWithLabels;
+
     }
 
 
