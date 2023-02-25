@@ -9,17 +9,18 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class CSV {
     Table table;
     TableWithLabels tableWithLabels;
-    List<String> headers = new ArrayList<>();
+    public List<String> headers = new ArrayList<>();
     public List<Row> rows = new ArrayList<Row>();
-    List<RowWithLabel> rowsWithLabels = new ArrayList<RowWithLabel>();
+    public List<RowWithLabel> rowsWithLabels = new ArrayList<RowWithLabel>();
 
-    Map<String, Integer> labelsToIndex;
+    Map<String, Integer> labelsToIndex = new HashMap<>();
 
 
     Table readTable(String file) throws IOException {
@@ -66,12 +67,14 @@ public class CSV {
 
                 String key = values[values.length - 1];
                 // si no contiene la clave en el mapa, la añade
-                if (!labelsToIndex.containsKey(key)) labelsToIndex.put(key, labelsToIndex.size());
+                if (!labelsToIndex.containsKey(key)) {
+                    labelsToIndex.put(key, labelsToIndex.size());
+                }
                 rowsWithLabels.add(new RowWithLabel(data,labelsToIndex.get(key)));
             }
         }
         reader.close();
-        tableWithLabels = new TableWithLabels(headers ,rowsWithLabels);
+        tableWithLabels = new TableWithLabels(headers,rowsWithLabels,labelsToIndex);
         return tableWithLabels;
 
     }
