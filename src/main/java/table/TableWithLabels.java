@@ -1,7 +1,7 @@
 package table;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+
 import java.util.List;
 import java.util.Map;
 
@@ -19,5 +19,14 @@ public class TableWithLabels extends Table{
         return(RowWithLabel) rows.get(rowNumber);
 
     }
+    public String getLabel(int index){
+        for (String key : labelsToIndex.keySet()) {
+            if (labelsToIndex.get(key).equals(index)) {
+                return key;
+            }
+        }
+        return null;
+    }
+
 
 }

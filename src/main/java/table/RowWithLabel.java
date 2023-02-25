@@ -1,6 +1,7 @@
 package table;
 
 import java.util.List;
+import java.util.Map;
 
 public class RowWithLabel extends Row {
     int numberClass;
@@ -13,7 +14,6 @@ public class RowWithLabel extends Row {
     public int getNumberClass() {
         return numberClass;
     }
-
 
 
 }
