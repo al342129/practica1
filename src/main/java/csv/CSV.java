@@ -19,8 +19,7 @@ public class CSV {
     public List<String> headers = new ArrayList<>();
     public List<Row> rows = new ArrayList<Row>();
     public List<RowWithLabel> rowsWithLabels = new ArrayList<RowWithLabel>();
-
-    Map<String, Integer> labelsToIndex = new HashMap<>();
+    public Map<String,Integer> labelsToIndex = new HashMap<>();
 
 
     Table readTable(String file) throws IOException {

@@ -4,7 +4,7 @@ import java.util.List;
 
 public class Table {
 
-    List<String> headers;
+    public List<String> headers;
     List<Row> rows;
 
     public Table(List<String> headers, List<Row> rows) {
@@ -16,7 +16,7 @@ public class Table {
         return rows.get(rowNumber);
     }
     public int getNumRows(){
-        return rows.size()+1; // 1 es de la cabecera
+        return rows.size() + 1; // 1 es de la cabecera
     }
     public int getNumColumns(){
         return headers.size();

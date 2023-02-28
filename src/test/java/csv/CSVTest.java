@@ -76,9 +76,9 @@ class CSVTest {
         assertEquals(0, csvW.tableWithLabels.getRowAt(1).getNumberClass());
         assertEquals("Iris-setosa",csvW.tableWithLabels.getLabel(0));
 
+     //   assertEquals(2, csvW.tableWithLabels.getRowAt(151).getNumberClass());
+
         assertEquals(1, csvW.tableWithLabels.getRowAt(53).getNumberClass());
-
-
         assertEquals("Iris-versicolor",csvW.tableWithLabels.getLabel(tableWithLabels.getRowAt(53).getNumberClass()));
 
     }
