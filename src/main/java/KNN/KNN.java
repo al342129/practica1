@@ -24,7 +24,7 @@ public class KNN {
         double dMin = 999999999;
         double d = 0;
         int pos = 0;
-        for (int i = 0; i < table.getNumRows(); i++) {
+        for (int i = 0; i < table.getNumRows()-1; i++) {
             d = distancia(data, table.getRowAt(i).getData());
             if (dMin < d) {
                 dMin = d;

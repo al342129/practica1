@@ -17,7 +17,7 @@ public class TableWithLabels extends Table{
     }
 
     public RowWithLabel getRowAt(int rowNumber){
-        return(RowWithLabel) rows.get(rowNumber);
+        return(RowWithLabel) super.rows.get(rowNumber);
 
     }
     public String getLabel(int index){
